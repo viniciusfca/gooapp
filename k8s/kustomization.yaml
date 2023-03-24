@@ -8,4 +8,4 @@ namespace: goapp
 images:
 - name: goapp
   newName: viniciusfca/goapp
-  newTag: b6db39ccd1bd6aebe568e9a1a9a7921e18c48106
+  newTag: 27363f8e02c04877d9034d0e6a623286f1a40741
