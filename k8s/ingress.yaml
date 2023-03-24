@@ -1,5 +1,4 @@
-# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
-
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,7 +6,7 @@ metadata:
   labels:
     app: goapp
 spec:
-  IngressClassName: kong
+  ingressClassName: kong
   rules:
   - http:
       paths:
