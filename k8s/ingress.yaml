@@ -1,0 +1,20 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: goapp-ingress
+  labels:
+    app: goapp
+spec:
+  IngressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /goapp
+        pathType: Prefix
+        backend:
+          service:
+            name: goapp
+            port:
+              number: 8080
