@@ -15,5 +15,27 @@ jobs:
         with:
           username: viniciusfca
           password: ${{secrets.DOCKER_PASSWORD}}
-          repositorio: viniciusfca/argocd
+          repository: viniciusfca/goapp
           tags: ${{ github.sha }}, lastest
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize_version: v3.6.1
+      - name: update k8s
+        run: |
+          cd k8s
+          kustomize edit set image goapp=viniciusfca/goapp:${{github.sha}}
+      - name: commit
+        run: |
+          git config --local user.email "vinicius_fca@hotmail.com"
+          git config --local user.name "vinicius"
+          git commit -am "Update image tag"
+      - name: push
+        uses: ad-m/github-push-action@master

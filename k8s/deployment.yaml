@@ -17,7 +17,7 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  goapp
-        image:  viniciusfca/argocd:lastest
+        image:  viniciusfca/goapp:lastest
         ports:
         - containerPort:  8080
           name:  goapp
